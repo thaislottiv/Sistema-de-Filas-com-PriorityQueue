@@ -1,0 +1,37 @@
+import java.util.PriorityQueue;
+
+class Tarefa implements Comparable<Tarefa> {
+    private final String descricao;
+    private final int prioridade;
+
+    public Tarefa(String descricao, int prioridade) {
+        this.descricao = descricao;
+        this.prioridade = prioridade;
+    }
+
+    @Override
+    public int compareTo(Tarefa outraTarefa) {
+        return Integer.compare(this.prioridade, outraTarefa.prioridade);
+    }
+
+    @Override
+    public String toString() {
+        return "Tarefa: " + descricao + " (Prioridade: " + prioridade + ")";
+    }
+}
+
+public class SistemaDeTarefas {
+    public static void main(String[] args) {
+        PriorityQueue<Tarefa> filaDeTarefas = new PriorityQueue<>();
+
+        // Adicionando tarefas à fila
+        filaDeTarefas.add(new Tarefa("Resolver bug de produção", 1));
+        filaDeTarefas.add(new Tarefa("Escrever artigo sobre Java", 3));
+        filaDeTarefas.add(new Tarefa("Preparar apresentação", 2));
+
+        // Executando as tarefas de acordo com a prioridade
+        while (!filaDeTarefas.isEmpty()) {
+            System.out.println("Executando: " + filaDeTarefas.poll());
+        }
+    }
+}
